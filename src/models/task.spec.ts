@@ -25,7 +25,15 @@ describe("task", () => {
         expect(newTask.targetDate.getFullYear()).toBe(2022);
     })
 
-    it.skip("should complete a task", () => {
-        
+    it("should complete a task", () => {
+        newTask.complete()
+        expect(newTask.done).toBeTruthy();
+    })
+
+    it("should show the conclusion date of task", () => {
+        newTask.complete()
+        expect(newTask.conclusionDate.getDate()).toBe(new Date().getDate());
+        expect(newTask.conclusionDate.getMonth()).toBe(new Date().getMonth());
+        expect(newTask.conclusionDate.getFullYear()).toBe(new Date().getFullYear());
     })
 })
