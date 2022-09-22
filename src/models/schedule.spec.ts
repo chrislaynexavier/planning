@@ -1,3 +1,4 @@
+import exp from "constants"
 import {Schedule} from "./schedule"
 import { Task } from "./task"
 describe("schedule", () => {
@@ -39,6 +40,12 @@ describe("schedule", () => {
         }
 
         expect(newSchedule.tasksByWeek()).toStrictEqual(result);
+    })
+    it("shold remove tasks", () => {
+        let newTask = new Task("ir para academia", new Date("09/20/2022"));
+        newSchedule.addTask(newTask);
+        newSchedule.removeTask(newTask);
+        expect(newSchedule.tasks).not.toContain(newTask)
     })
     
 })

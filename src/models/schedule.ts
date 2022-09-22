@@ -25,4 +25,12 @@ export class Schedule{
         })
         return daysOfWeek
     }
+    removeTask(task:Task){
+        const taskToRemove=task;
+        this.tasks.forEach((task,index) => {
+            if (task === taskToRemove){
+                this.tasks.splice(index,1);
+        }
+        })
+    }
 }
