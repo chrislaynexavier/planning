@@ -21,7 +21,7 @@ export class Schedule {
             '6': [],
         }
         this.tasks.forEach((task) => {
-            daysOfWeek[task.targetDate.getDay()].push(task);
+            daysOfWeek[task.targetDay].push(task);
         })
         return daysOfWeek
     }

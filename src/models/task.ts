@@ -1,16 +1,16 @@
-export class Task{
-    public name!:string;
+export class Task {
+    public name!: string;
     public done: boolean = false;
     public createdDate: Date = new Date();
-    public targetDate!: Date;
+    public targetDay!: number;
     public conclusionDate!: Date;
 
-    constructor(name:string, targetDate:Date){
+    constructor(name: string, targetDay: number) {
         this.name = name;
-        this.targetDate = targetDate;
+        this.targetDay = targetDay;
     }
 
-    complete(){
+    complete() {
         this.done = true;
         this.conclusionDate = new Date();
     }
