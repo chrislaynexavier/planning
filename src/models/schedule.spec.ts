@@ -1,7 +1,7 @@
-import {Schedule} from "./schedule"
+import { Schedule } from "./schedule"
 import { Task } from "./task"
 describe("schedule", () => {
-    let newSchedule!:Schedule
+    let newSchedule!: Schedule
     beforeEach(() => {
         newSchedule = new Schedule("Schedule1");
     })
@@ -9,21 +9,21 @@ describe("schedule", () => {
     it("should has name", () => {
         expect(newSchedule.name).toBe("Schedule1");
     })
-    
+
     it("should hasn't tasks", () => {
         expect(newSchedule.tasks).toHaveLength(0);
     })
 
     it("should add tasks", () => {
-        let newTask = new Task("ir para academia", new Date("09/20/2022"));
+        let newTask = new Task("ir para academia", 2);
         newSchedule.addTask(newTask);
         expect(newSchedule.tasks).toContain(newTask);
     })
-   
+
     it("should list tasks by week day", () => {
-        let gym = new Task("ir para academia", new Date("09/20/2022"));
-        let study = new Task("estudar", new Date("09/20/2022"));
-        let read = new Task("ler", new Date("09/21/2022"));
+        let gym = new Task("ir para academia", 2);
+        let study = new Task("estudar", 2);
+        let read = new Task("ler", 3);
         newSchedule.addTask(gym);
         newSchedule.addTask(study);
         newSchedule.addTask(read);
@@ -40,10 +40,10 @@ describe("schedule", () => {
 
         expect(newSchedule.tasksByWeek()).toStrictEqual(result);
     })
-    
-    it("shold remove tasks", () => {
-        let newTask = new Task("ir para academia", new Date("09/20/2022"));
-        let newTask2 = new Task("ir para trabalho", new Date("09/20/2022"));
+
+    it("should remove task", () => {
+        let newTask = new Task("ir para academia", 2);
+        let newTask2 = new Task("ir para trabalho", 1);
         newSchedule.addTask(newTask);
         newSchedule.addTask(newTask2);
         newSchedule.removeTask(newTask);
