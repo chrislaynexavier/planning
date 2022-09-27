@@ -1,17 +1,17 @@
 import { Task } from "./task";
 
-export class Schedule{
-    public name!:string;
-    public tasks:Task[] = [];
-    
-    constructor(name:string){
+export class Schedule {
+    public name!: string;
+    public tasks: Task[] = [];
+
+    constructor(name: string) {
         this.name = name;
     }
-    addTask(task:Task){
+    addTask(task: Task) {
         this.tasks.push(task);
     }
-    tasksByWeek(){
-        let daysOfWeek:Record<string,Task[]> = {
+    tasksByWeek() {
+        let daysOfWeek: Record<string, Task[]> = {
             '0': [],
             '1': [],
             '2': [],
@@ -19,10 +19,18 @@ export class Schedule{
             '4': [],
             '5': [],
             '6': [],
-        } 
+        }
         this.tasks.forEach((task) => {
             daysOfWeek[task.targetDate.getDay()].push(task);
         })
         return daysOfWeek
+    }
+    removeTask(task: Task) {
+        const taskToRemove = task;
+        this.tasks.forEach((task, index) => {
+            if (task === taskToRemove) {
+                this.tasks.splice(index, 1);
+            }
+        })
     }
 }

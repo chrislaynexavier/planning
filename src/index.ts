@@ -11,11 +11,11 @@ app.use(function (req: any, res: any, next: any) {
     next()
 })
 
-app.get('/',(req:any, res:any) => {
-    res.json({req: 'aaa'})
+app.get('/', (req: any, res: any) => {
+    res.json({ req: 'aaa' })
 })
 
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
-  })
+})
