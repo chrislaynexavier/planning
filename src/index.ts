@@ -28,7 +28,7 @@ app.post('/task', (req: any, res: any) => {
     const newTask = new Task(req.body.name, req.body.day);
     tasks.push(newTask);
     res.json({ req: 'Task criada com sucesso' });
-})//criar condicao para nao ter mais de uma task com o mesmo nome
+})
 
 app.post('/add_task_schedule', (req: any, res: any) => {
     tasks.forEach((task) => {
@@ -59,11 +59,7 @@ app.post('/complete_task', (req: any, res: any) => {
             taskToComplete = task
         }
     })
-<<<<<<< HEAD
     taskToComplete.complete()
-=======
-    taskToComplete.complete()//completa a task, ou seja todas as que tem o mesmo nome. Fazer na schedule
->>>>>>> c92f34b (add endpoint to complete task)
     res.json({ taskDone: taskToComplete.done, schedule: schedule })
 })
 
