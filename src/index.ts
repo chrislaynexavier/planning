@@ -28,7 +28,7 @@ app.post('/task', (req: any, res: any) => {
     const newTask = new Task(req.body.name, req.body.day);
     tasks.push(newTask);
     res.json({ req: 'Task criada com sucesso' });
-})
+})//criar condicao para nao ter mais de uma task com o mesmo nome
 
 app.post('/add_task_schedule', (req: any, res: any) => {
     tasks.forEach((task) => {
@@ -39,7 +39,7 @@ app.post('/add_task_schedule', (req: any, res: any) => {
     res.json({ schedule: schedule });
 })
 
-app.post('/remove_task', (req: any, res: any) => {
+app.post('/remove_task_schedule', (req: any, res: any) => {
     let taskToRemove!: Task;
     tasks.forEach((task) => {
         if (req.body.name_task === task.name) {
@@ -50,6 +50,17 @@ app.post('/remove_task', (req: any, res: any) => {
         schedule.removeTask(taskToRemove);
     }
     res.json({ schedule: schedule });
+})
+
+app.post('/complete_task', (req: any, res: any) => {
+    let taskToComplete!: Task;
+    tasks.forEach((task) => {
+        if (req.body.name_task === task.name) {
+            taskToComplete = task
+        }
+    })
+    taskToComplete.complete()//completa a task, ou seja todas as que tem o mesmo nome. Fazer na schedule
+    res.json({ taskDone: taskToComplete.done, schedule: schedule })
 })
 
 app.get('/task', (req: any, res: any) => {
