@@ -31,11 +31,13 @@ app.post('/task', (req: any, res: any) => {
 })
 
 app.post('/add_task_schedule', (req: any, res: any) => {
+    let taskToAdd!: Task
     tasks.forEach((task) => {
         if (req.body.name_task === task.name) {
-            schedule.addTask(task);
+            taskToAdd = task
         }
     })
+    schedule.addTask(taskToAdd);
     res.json({ schedule: schedule });
 })
 
@@ -54,8 +56,8 @@ app.post('/remove_task_schedule', (req: any, res: any) => {
 
 app.post('/complete_task', (req: any, res: any) => {
     let taskToComplete!: Task;
-    tasks.forEach((task) => {
-        if (req.body.name_task === task.name) {
+    schedule.tasks.forEach((task) => {
+        if (req.body.name_task === task.name && !task.done) {
             taskToComplete = task
         }
     })
@@ -69,6 +71,10 @@ app.get('/task', (req: any, res: any) => {
 
 app.get('/schedule', (req: any, res: any) => {
     res.json({ schedule: schedule });
+})
+
+app.get('/tasks_by_week', (req: any, res: any) => {
+    res.json({ req: schedule.tasksByWeek() })
 })
 
 app.listen(port, () => {

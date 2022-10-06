@@ -8,7 +8,7 @@ export class Schedule {
         this.name = name;
     }
     addTask(task: Task) {
-        this.tasks.push(task);
+        this.tasks.push(new Task(task.name, task.targetDay));
     }
     tasksByWeek() {
         let daysOfWeek: Record<string, Task[]> = {
